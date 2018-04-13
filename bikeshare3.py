@@ -175,7 +175,7 @@ assert most_popular_gender(data_list) == "Male", "TAREFA 6: Resultado de retorno
 # -----------------------------------------------------
 
 # Se tudo está rodando como esperado, verifique este gráfico!
-gender_list = column_to_list(data_list, -2)
+gender_list = column_to_list(data_list,-2)
 types = ["Male", "Female"]
 quantity = count_gender(data_list)
 y_pos = list(range(len(types)))
@@ -191,13 +191,25 @@ input("Aperte Enter para continuar...")
 # TODO: Crie um gráfico similar para user_types. Tenha certeza que a legenda está correta.
 print("\nTAREFA 7: Verifique o gráfico!")
 
-gender_list = column_to_list(data_list, -2)
-types = ["Male", "Female"]
-quantity = count_gender(data_list)
-plt.pie(quantity,labels=types,autopct='%1.1f%%')
-plt.title('Distribuição por Gênero')
-plt.show()
+user_list = column_to_list(data_list, 5)
+types = list(set(user_list))
+quantity =[]
+n=0
+while n<= len(types)-1:
+    count = 0
+    for user in user_list:
+        if types[n] == user:
+            count += 1
+    quantity.append(count)
+    n += 1
 
+y_pos = list(range(len(types)))
+plt.bar(y_pos, quantity)
+plt.ylabel('Quantidade')
+plt.xlabel('Usuário')
+plt.xticks(y_pos, types)
+plt.title('Quantidade por Usuário')
+plt.show(block=True)
 
 input("Aperte Enter para continuar...")
 # TAREFA 8
